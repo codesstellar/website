@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+
+  --color-background: #040A07;
+  --color-surface: #0A140F;
+  --color-border-subtle: rgba(255, 255, 255, 0.08);
+  --color-accent-primary: #C69B24;
+  --color-accent-secondary: #1A5D42;
+  --color-accent-tertiary: #4ADE80;
+  --color-text-primary: #F0F4FF;
+  --color-text-secondary: #8892A4;
+}
+
+@layer base {
+  body {
+    @apply bg-background text-text-primary font-sans antialiased overflow-x-hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display tracking-tight;
+  }
+}
+
+.glow-effect {
+  box-shadow: 0 0 40px rgba(198, 155, 36, 0.15);
+}
+
+.hero-gradient {
+  background: radial-gradient(ellipse at 20% 50%, rgba(26, 93, 66, 0.25) 0%, transparent 60%),
+              radial-gradient(ellipse at 80% 20%, rgba(198, 155, 36, 0.15) 0%, transparent 60%),
+              var(--color-background);
+}
+
+.text-gradient-primary {
+  background: linear-gradient(to right, #F0F4FF, var(--color-accent-primary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-secondary {
+  background: linear-gradient(to right, #F0F4FF, var(--color-accent-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@keyframes ticker {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Hide scrollbar for ticker */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+
+  .beat-2, .beat-3, .act2-beat:not(:first-child) {
+    display: none !important;
+  }
+}
