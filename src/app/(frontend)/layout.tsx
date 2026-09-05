@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import SiteShell from '@/src/components/SiteShell';
 import '@/src/index.css';
 
@@ -59,6 +60,7 @@ export default function FrontendLayout({ children }: { children: React.ReactNode
     <html lang="en" className="dark scroll-smooth">
       <body className="bg-background text-text-primary antialiased selection:bg-accent-primary selection:text-background font-sans min-h-screen flex flex-col">
         <SiteShell>{children}</SiteShell>
+        <SpeedInsights />
       </body>
     </html>
   );
