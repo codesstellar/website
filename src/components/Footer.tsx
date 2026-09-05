@@ -27,7 +27,7 @@ export default function Footer() {
           {/* Col 1 - Brand */}
           <div className="flex flex-col gap-5">
             <Link href="/" className="flex items-center">
-              <img src="/assets/logo-full-white.png" alt="Codesstellar Logo" className="h-9 w-auto object-contain" />
+              <img src="/assets/logo-full.png" alt="Codesstellar Logo" className="h-9 w-auto object-contain" />
             </Link>
             <p className="text-text-secondary text-sm leading-relaxed">
               Post-Quantum Cryptography (PQC)<br/>

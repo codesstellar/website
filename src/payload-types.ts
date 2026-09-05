@@ -133,9 +133,12 @@ export interface UserAuthOperations {
  */
 export interface User {
   id: number;
-  role: 'admin' | 'editor' | 'researcher';
+  role: 'admin' | 'editor' | 'researcher' | 'agent';
   updatedAt: string;
   createdAt: string;
+  enableAPIKey?: boolean | null;
+  apiKey?: string | null;
+  apiKeyIndex?: string | null;
   email: string;
   resetPasswordToken?: string | null;
   resetPasswordExpiration?: string | null;
@@ -261,6 +264,9 @@ export interface BlogPost {
   excerpt: string;
   bodyMarkdown: string;
   heroImage?: (number | null) | Media;
+  /**
+   * Optional URL for image hosted externally (e.g. Supabase Storage, CDN, Unsplash). Used if heroImage is empty.
+   */
   heroImageUrl?: string | null;
   author?: (number | null) | Author;
   status: 'draft' | 'review' | 'approved' | 'published';
@@ -386,6 +392,9 @@ export interface UsersSelect<T extends boolean = true> {
   role?: T;
   updatedAt?: T;
   createdAt?: T;
+  enableAPIKey?: T;
+  apiKey?: T;
+  apiKeyIndex?: T;
   email?: T;
   resetPasswordToken?: T;
   resetPasswordExpiration?: T;
@@ -493,6 +502,7 @@ export interface BlogPostsSelect<T extends boolean = true> {
   excerpt?: T;
   bodyMarkdown?: T;
   heroImage?: T;
+  heroImageUrl?: T;
   author?: T;
   status?: T;
   topicPillar?: T;

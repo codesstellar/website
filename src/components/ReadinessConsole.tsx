@@ -26,16 +26,16 @@ export default function ReadinessConsole() {
             <div className="mt-8 flex items-center gap-3 text-sm text-text-secondary"><Bot className="w-5 h-5 text-accent-tertiary" /> Built for evidence, review, and repeatable security decisions.</div>
           </div>
 
-          <div className="rounded-3xl border border-white/10 bg-background/70 shadow-2xl shadow-black/30 p-5 md:p-7 backdrop-blur-sm">
+          <div className="rounded-3xl border border-border-subtle bg-background shadow-[var(--shadow-xl)] p-5 md:p-7">
             <div className="flex items-center justify-between pb-5 border-b border-border-subtle">
               <div className="flex items-center gap-3"><div className="w-9 h-9 grid place-items-center rounded-xl bg-accent-primary/10 border border-accent-primary/25"><ShieldCheck className="w-5 h-5 text-accent-primary" /></div><div><p className="font-mono text-xs text-text-secondary">CODESTELLAR / SIGNAL</p><p className="text-sm font-medium">PQC readiness preview</p></div></div>
               <span className="text-[11px] font-mono rounded-full px-2.5 py-1 bg-accent-tertiary/10 text-accent-tertiary">DEMO MODE</span>
             </div>
             <div className="mt-6 grid sm:grid-cols-3 gap-2">
-              {profiles.map((item, index) => <button key={item.name} onClick={() => setActive(index)} className={`text-left px-3 py-3 rounded-xl border text-sm transition-all ${active === index ? 'border-accent-primary/70 bg-accent-primary/10 text-text-primary' : 'border-border-subtle text-text-secondary hover:border-white/20'}`}>{item.name}</button>)}
+              {profiles.map((item, index) => <button key={item.name} onClick={() => setActive(index)} className={`text-left px-3 py-3 rounded-xl border text-sm transition-all ${active === index ? 'border-accent-primary/70 bg-accent-primary/10 text-text-primary' : 'border-border-subtle text-text-secondary hover:border-border-2'}`}>{item.name}</button>)}
             </div>
             <motion.div key={profile.name} initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="mt-6 grid md:grid-cols-[150px_1fr] gap-6">
-              <div className="rounded-2xl bg-surface border border-border-subtle p-5 text-center"><p className="text-xs font-mono text-text-secondary uppercase">Readiness</p><p className="mt-3 text-5xl font-display text-accent-primary">{profile.score}</p><p className="text-xs text-text-secondary mt-1">of 100</p><div className="h-1.5 bg-white/10 rounded-full mt-5 overflow-hidden"><motion.div initial={{ width: 0 }} animate={{ width: `${profile.score}%` }} className="h-full bg-accent-primary" /></div></div>
+              <div className="rounded-2xl bg-surface border border-border-subtle p-5 text-center"><p className="text-xs font-mono text-text-secondary uppercase">Readiness</p><p className="mt-3 text-5xl font-display text-accent-primary">{profile.score}</p><p className="text-xs text-text-secondary mt-1">of 100</p><div className="h-1.5 bg-border-subtle rounded-full mt-5 overflow-hidden"><motion.div initial={{ width: 0 }} animate={{ width: `${profile.score}%` }} className="h-full bg-accent-primary" /></div></div>
               <div><p className="text-xs font-mono text-accent-tertiary uppercase tracking-wider mb-3">Review areas</p><ul className="space-y-3">{profile.findings.map((finding) => <li key={finding} className="flex gap-3 text-sm text-text-secondary"><CheckCircle2 className="w-4 h-4 shrink-0 mt-0.5 text-accent-tertiary" />{finding}</li>)}</ul><div className="mt-5 rounded-xl bg-accent-primary/5 border border-accent-primary/15 px-4 py-3 text-sm text-text-secondary"><span className="text-text-primary font-medium">Suggested next step: </span>{profile.next}</div></div>
             </motion.div>
             <a href="/build" className="mt-6 inline-flex items-center gap-2 text-sm font-medium text-accent-primary hover:text-text-primary transition-colors">Request a tailored assessment <ArrowRight className="w-4 h-4" /></a>

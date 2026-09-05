@@ -109,7 +109,7 @@ export default async function ResearchHubPage() {
                         <span
                           key={star}
                           className={`w-2 h-2 rounded-full ${
-                            star <= item.importanceScore ? 'bg-accent-primary' : 'bg-white/10'
+                            star <= item.importanceScore ? 'bg-accent-primary' : 'bg-border-subtle'
                           }`}
                         />
                       ))}

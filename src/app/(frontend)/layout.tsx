@@ -57,7 +57,7 @@ export const metadata: Metadata = {
 
 export default function FrontendLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className="dark scroll-smooth">
+    <html lang="en" className="scroll-smooth">
       <body className="bg-background text-text-primary antialiased selection:bg-accent-primary selection:text-background font-sans min-h-screen flex flex-col">
         <SiteShell>{children}</SiteShell>
         <SpeedInsights />

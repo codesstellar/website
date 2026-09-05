@@ -21,7 +21,7 @@ export default function Partners() {
           {[...Array(2)].map((_, i) => (
             <div key={i} className="flex gap-16 px-8">
               {partners.map((partner, j) => (
-                <div key={j} className="flex flex-col gap-2 opacity-50 hover:opacity-100 transition-all duration-300 cursor-pointer" style={{ filter: 'drop-shadow(0 0 0px transparent)' }} onMouseEnter={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 8px rgba(0,200,255,0.3))'} onMouseLeave={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 0px transparent)'}>
+                <div key={j} className="flex flex-col gap-2 opacity-50 hover:opacity-100 transition-all duration-300 cursor-pointer" style={{ filter: 'drop-shadow(0 0 0px transparent)' }} onMouseEnter={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 8px rgba(174,128,0,0.3))'} onMouseLeave={(e) => e.currentTarget.style.filter = 'drop-shadow(0 0 0px transparent)'}>
                   <div className="text-2xl font-display font-bold text-text-primary">{partner.name}</div>
                   <div className="text-sm font-mono text-text-secondary">{partner.desc}</div>
                 </div>

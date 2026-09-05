@@ -302,6 +302,44 @@ The digest should include:
 - Suggested priority
 - Source links
 
+## External Agent Access (e.g. a locally-run blog-writing agent)
+
+The `users` collection uses Payload API-key auth (`auth.useAPIKey: true`) instead of
+session login, so a script or agent process outside the Next.js app can create/update
+content without holding a password or refreshing a JWT.
+
+Setup:
+
+1. In `/admin`, create a user with role `agent` (e.g. `hermes@codesstellar.com`).
+2. Open that user, enable **Enable API Key**, and copy the generated key. It is shown
+   once — store it as a secret in the agent's own environment, not in this repo.
+3. Call the Payload REST API with it:
+
+```bash
+curl -X POST https://<site-domain>/api/blog-posts \
+  -H "Authorization: users API-Key <the-key>" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "title": "...",
+    "slug": "...",
+    "excerpt": "...",
+    "bodyMarkdown": "...",
+    "status": "draft"
+  }'
+```
+
+Notes:
+
+- Every collection defaults to requiring an authenticated user for create/read/update/
+  delete (`Boolean(req.user)`) — the public `/blogs` pages bypass this because they call
+  Payload's local API server-side, which does not enforce access control by default.
+- Have the agent create posts with `status: "draft"` (or `"review"`) rather than
+  `"published"`, so the human editorial review/approval step in the pipeline above still
+  gates what actually goes live.
+- The same API key works from anywhere with network access to the deployed site, so
+  running the agent locally (e.g. Hermes) against the production `/api` is fine as long
+  as the key is kept out of version control.
+
 ## Website Routes After Implementation
 
 Recommended route structure:

@@ -75,7 +75,7 @@ export default function TechStack() {
                 </div>
                 <p className="max-w-md text-base leading-relaxed text-text-secondary md:text-lg">{layer.description}</p>
               </div>
-              <div className="relative min-h-[300px] overflow-hidden border-t border-border-subtle bg-[#030805] md:min-h-0 md:border-l md:border-t-0">
+              <div className="relative min-h-[300px] overflow-hidden border-t border-border-subtle bg-ink md:min-h-0 md:border-l md:border-t-0">
                 <img src={layer.image} alt={layer.alt} className="h-full w-full object-cover opacity-80 transition duration-[1800ms] ease-out group-hover:scale-105 group-hover:opacity-100 motion-reduce:transition-none" />
                 <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(4,10,7,.35),transparent_42%),linear-gradient(0deg,rgba(4,10,7,.28),transparent_50%)]" />
                 <div className={`absolute inset-x-12 bottom-10 h-px bg-gradient-to-r from-transparent via-white/40 to-transparent opacity-50 ${layer.glow}`} />

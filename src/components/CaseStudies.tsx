@@ -57,7 +57,7 @@ export default function CaseStudies() {
             const gold = study.accent === 'gold';
             const accentText = gold ? 'text-accent-primary' : 'text-accent-tertiary';
             const accentBorder = gold ? 'border-accent-primary/25' : 'border-accent-tertiary/25';
-            return <article key={study.number} className="case-reveal group relative grid lg:grid-cols-[100px_1.1fr_.9fr] gap-7 lg:gap-12 rounded-[2rem] border border-border-subtle bg-surface/50 p-7 md:p-10 overflow-hidden transition-colors hover:border-white/20">
+            return <article key={study.number} className="case-reveal group relative grid lg:grid-cols-[100px_1.1fr_.9fr] gap-7 lg:gap-12 rounded-[2rem] border border-border-subtle bg-surface/50 p-7 md:p-10 overflow-hidden transition-colors hover:border-border-2">
               <div className={`absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 ${gold ? 'bg-[radial-gradient(circle_at_90%_10%,rgba(198,155,36,.13),transparent_30%)]' : 'bg-[radial-gradient(circle_at_90%_10%,rgba(74,222,128,.12),transparent_30%)]'}`} />
               <div className={`relative text-5xl md:text-6xl font-display ${accentText} opacity-80`}>{study.number}</div>
               <div className="relative"><p className={`text-xs font-mono tracking-[.17em] uppercase ${accentText} mb-5`}>{study.eyebrow}</p><h2 className="text-3xl md:text-4xl font-display leading-tight">{study.title}</h2><p className="mt-5 text-text-secondary leading-relaxed">{study.summary}</p><div className="mt-7 flex flex-wrap gap-2">{study.focus.map((item) => <span key={item} className={`px-3 py-1.5 rounded-full border ${accentBorder} text-xs text-text-secondary`}>{item}</span>)}</div></div>
