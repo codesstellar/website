@@ -27,6 +27,11 @@ export const BlogPosts: CollectionConfig = {
     {
       name: 'status',
       type: 'select',
+      // Payload's own versions.drafts feature adds an internal `_status` field
+      // (draft/published) to this same table. Without an explicit enumName,
+      // Drizzle's schema push generated a colliding Postgres enum type shared
+      // with that internal field, silently dropping "review" and "approved".
+      enumName: 'blog_post_editorial_status',
       defaultValue: 'draft',
       options: ['draft', 'review', 'approved', 'published'],
       required: true,
