@@ -70,8 +70,32 @@ function inlineFormat(text: string): React.ReactNode[] {
   return parts;
 }
 
+function splitIntoBlocks(markdown: string): string[] {
+  const lines = markdown.split('\n');
+  const blocks: string[] = [];
+  let current: string[] = [];
+  let inCodeBlock = false;
+
+  for (const line of lines) {
+    if (line.trim().startsWith('```')) inCodeBlock = !inCodeBlock;
+
+    if (line.trim() === '' && !inCodeBlock) {
+      if (current.length > 0) {
+        blocks.push(current.join('\n').trim());
+        current = [];
+      }
+      continue;
+    }
+
+    current.push(line);
+  }
+  if (current.length > 0) blocks.push(current.join('\n').trim());
+
+  return blocks.filter(Boolean);
+}
+
 export default function MarkdownArticle({ markdown }: { markdown: string }) {
-  const blocks = markdown.split(/\n{2,}/).map((block) => block.trim()).filter(Boolean);
+  const blocks = splitIntoBlocks(markdown);
 
   return (
     <div className="space-y-6 text-text-secondary leading-relaxed">
@@ -110,12 +134,12 @@ export default function MarkdownArticle({ markdown }: { markdown: string }) {
           const language = lines[0].replace('```', '').trim() || 'text';
           const code = lines.slice(1, lines[lines.length - 1].startsWith('```') ? -1 : undefined).join('\n');
           return (
-            <div key={index} className="my-6 rounded-xl border border-border-subtle bg-[#080d0a] overflow-hidden">
-              <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-white/[0.02] text-xs font-mono text-text-secondary">
+            <div key={index} className="my-6 rounded-xl border border-border-subtle bg-ink overflow-hidden">
+              <div className="flex items-center justify-between px-4 py-2 border-b border-white/10 bg-white/[0.03] text-xs font-mono text-white/50">
                 <span>{language}</span>
                 <span className="text-[10px] text-accent-primary uppercase tracking-wider">Codesstellar Verification</span>
               </div>
-              <pre className="p-4 text-xs md:text-sm font-mono text-text-primary overflow-x-auto leading-relaxed">
+              <pre className="p-4 text-xs md:text-sm font-mono text-white/90 overflow-x-auto leading-relaxed">
                 <code>{code}</code>
               </pre>
             </div>
